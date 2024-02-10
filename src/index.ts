@@ -1,7 +1,14 @@
-/**
- * The entrypoint for the action.
- */
-import { run } from './main'
+import * as core from '@actions/core'
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
-run()
+/**
+ * The main function for the action.
+ */
+async function main() {
+  const eventName = process.env.GITHUB_EVENT_NAME
+  if (eventName !== 'pull_request') {
+    core.warning('Only Pull request event are supported')
+    process.exit(1)
+  }
+}
+
+main()
