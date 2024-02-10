@@ -2,10 +2,12 @@ name: Continuous Integration
 
 on:
   pull_request:
+  pull_request_review:
   push:
     branches:
       - main
-
+env:
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 permissions:
   contents: read
 
